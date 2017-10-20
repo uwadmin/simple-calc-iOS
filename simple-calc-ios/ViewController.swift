@@ -55,12 +55,16 @@ class ViewController: UIViewController {
                 case count: Result.text = "1"
                 case avg: ()
                 case fact:
-                    var fact: Int = 1
-                    let n: Int = Int(input)! + 1
-                    for i in 1..<n {
-                        fact = fact * i
+                    if (Int(input)! > 20) {
+                        Result.text = "too large"
+                    } else {
+                        var fact: Int = 1
+                        let n: Int = Int(input)! + 1
+                        for i in 1..<n {
+                            fact = fact * i
+                        }
+                        Result.text = String(fact)
                     }
-                    Result.text = String(fact)
                 default: ()
                 }
             } else {
@@ -73,7 +77,7 @@ class ViewController: UIViewController {
                     let sum = numbers.reduce(0, +)
                     let avg = sum / Double(numbers.count)
                     Result.text = avg.clean
-                case fact: Result.text = "error"
+                case fact: Result.text = "too many operands"
                 default: ()
                 }
             }
@@ -87,6 +91,7 @@ class ViewController: UIViewController {
             let arr = input.condensedWhitespace.components(separatedBy: " ")
             if arr.count == 1 {
                 Result.text = Result.text! + ""
+                postCalc = false
             } else {
                 let op = arr[1]
                 switch op {
@@ -157,7 +162,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
