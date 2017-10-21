@@ -300,7 +300,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zc3-fQ-QG7" firstAttribute="leading" secondItem="bMn-aX-ClR" secondAttribute="trailing" constant="2" id="0cU-bk-cOB"/>
-                            <constraint firstItem="eru-cD-q9J" firstAttribute="top" secondItem="2b0-vr-mQa" secondAttribute="bottom" constant="22" id="1AE-zn-GRA"/>
                             <constraint firstItem="IBu-9B-cSW" firstAttribute="top" secondItem="AKz-SG-ita" secondAttribute="bottom" constant="2" id="2Lw-Is-dzQ"/>
                             <constraint firstItem="pXS-2H-hnB" firstAttribute="leading" secondItem="Qns-N7-Ea4" secondAttribute="trailing" constant="2" id="2z7-9N-qYy"/>
                             <constraint firstItem="sGh-Xy-NwP" firstAttribute="width" secondItem="8u2-jH-vp5" secondAttribute="width" id="31S-8q-hd5"/>
