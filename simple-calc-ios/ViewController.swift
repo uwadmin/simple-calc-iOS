@@ -123,7 +123,7 @@ class ViewController: UIViewController {
                     case avg:
                         let sum = numbers.reduce(0, +)
                         let avg = sum / Double(numbers.count)
-                        Result.text = avg.clean
+                        Result.text = avg.rounded(toPlaces: precision).clean
                     case fact: Result.text = "too many operands"
                     default: ()
                     }
@@ -201,7 +201,7 @@ class ViewController: UIViewController {
                         }
                         let sum = numbers.reduce(0, +)
                         let avg = sum / Double(numbers.count)
-                        Result.text = avg.clean
+                        Result.text = avg.rounded(toPlaces: precision).clean
 //                    case "fact":
 //                        if (arr.count == 2) {
 //                            Result.text = fact(arr[0])
