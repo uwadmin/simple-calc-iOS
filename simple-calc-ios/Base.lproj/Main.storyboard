@@ -236,6 +236,9 @@
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eAj-Zx-b4l">
                                 <rect key="frame" x="16" y="32" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="lum-Ru-Lca"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Normal Notation"/>
                                     <segment title="Reverse Polish Notation"/>
@@ -248,6 +251,7 @@
                                 <rect key="frame" x="0.0" y="623" width="198" height="44"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="OnG-eK-PKd"/>
                                     <constraint firstAttribute="width" constant="198" id="gGw-du-yv4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -287,11 +291,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-Ad-lQh">
-                                <rect key="frame" x="16" y="105" width="343" height="72"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="C3G-NB-h7j"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-Ad-lQh">
+                                <rect key="frame" x="16" y="101" width="343" height="76"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -373,6 +374,7 @@
                             <constraint firstItem="XYh-Jx-D2A" firstAttribute="top" secondItem="MYe-pt-SBg" secondAttribute="bottom" constant="2" id="b94-rd-eXk"/>
                             <constraint firstItem="MYe-pt-SBg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bFo-Sj-95H"/>
                             <constraint firstItem="aCc-U9-EKT" firstAttribute="top" secondItem="eru-cD-q9J" secondAttribute="bottom" constant="2" id="bpf-bJ-Fxs"/>
+                            <constraint firstItem="ljE-Ad-lQh" firstAttribute="top" secondItem="F5m-qu-Zlo" secondAttribute="bottom" constant="4" id="ctP-ow-zt2"/>
                             <constraint firstItem="eru-cD-q9J" firstAttribute="height" secondItem="GI4-1A-KKP" secondAttribute="height" id="dAE-pb-CLq"/>
                             <constraint firstItem="GI4-1A-KKP" firstAttribute="top" secondItem="HIX-IF-l7Z" secondAttribute="top" id="eZ6-qZ-ook"/>
                             <constraint firstItem="sGh-Xy-NwP" firstAttribute="top" secondItem="bMn-aX-ClR" secondAttribute="bottom" constant="2" id="f6J-FJ-z8Z"/>
@@ -394,6 +396,7 @@
                             <constraint firstItem="2b0-vr-mQa" firstAttribute="width" secondItem="GI4-1A-KKP" secondAttribute="width" id="qUl-t3-aJy"/>
                             <constraint firstItem="eAj-Zx-b4l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rAx-62-5va"/>
                             <constraint firstItem="Qns-N7-Ea4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sV1-mg-xTc"/>
+                            <constraint firstItem="e9Z-3S-SYW" firstAttribute="top" secondItem="ljE-Ad-lQh" secondAttribute="bottom" constant="4" id="se4-W1-Td6"/>
                             <constraint firstItem="HIX-IF-l7Z" firstAttribute="leading" secondItem="AKz-SG-ita" secondAttribute="trailing" constant="2" id="t5G-UT-fpK"/>
                             <constraint firstItem="awh-o5-Xrd" firstAttribute="width" secondItem="8u2-jH-vp5" secondAttribute="width" id="tJe-0z-n53"/>
                             <constraint firstItem="eru-cD-q9J" firstAttribute="width" secondItem="GI4-1A-KKP" secondAttribute="width" id="thm-cw-n70"/>
