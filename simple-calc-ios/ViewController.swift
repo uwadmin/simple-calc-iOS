@@ -186,7 +186,7 @@ class ViewController: UIViewController {
             let rawArr = input.condensedWhitespace.components(separatedBy: " ")
             let arr = reArrangearr(rawArr)
             var result:Double = 0
-            if arr.count == 1 {
+            if (arr.count == 1 && eleIsNumber(arr)) {
                 result = Double(arr[0])!
                 Result.text = result.rounded(toPlaces: precision).clean
                 postCalc = true
@@ -209,7 +209,7 @@ class ViewController: UIViewController {
                         let avg = sum / Double(numbers.count)
                         Result.text = avg.rounded(toPlaces: precision).clean
                     default:
-                        break
+                        ()
                     }
                 } else {
                     Result.text = "error"
