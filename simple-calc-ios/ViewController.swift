@@ -160,7 +160,7 @@ class ViewController: UIViewController {
                 Result.text = Result.text! + ""
                 postCalc = false
             } else {
-                if (eleIsNumber(arr) && sameOp(arr)) {
+                if (arr.count % 2 == 1 && eleIsNumber(arr) && sameOp(arr)) {
                     let op = arr[1]
                     var result:Double = 0
                     switch op {
