@@ -249,7 +249,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-Ad-lQh">
-                                <rect key="frame" x="16" y="89" width="343" height="79"/>
+                                <rect key="frame" x="16" y="105" width="343" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <nil key="textColor"/>
@@ -259,9 +259,12 @@
                                 <rect key="frame" x="16" y="32" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Reverse Polish Notation"/>
                                     <segment title="Normal Notation"/>
+                                    <segment title="Reverse Polish Notation"/>
                                 </segments>
+                                <connections>
+                                    <action selector="modeControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="XlT-qY-CZT"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" tag="-3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qns-N7-Ea4">
                                 <rect key="frame" x="0.0" y="626" width="198" height="41"/>
@@ -287,6 +290,27 @@
                                     <action selector="spaceClearPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bRE-sI-kTI"/>
                                 </connections>
                             </button>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="F5m-qu-Zlo">
+                                <rect key="frame" x="265" y="68" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stepperChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Wl-sl-OHV"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Precision: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7Z-6Y-ZaS">
+                                <rect key="frame" x="16" y="68" width="102" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qa-Pt-LJu">
+                                <rect key="frame" x="106" y="68" width="41" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -300,6 +324,8 @@
                         <outlet property="fact" destination="e9Z-3S-SYW" id="IpF-Iu-ih0"/>
                         <outlet property="mod" destination="170-Rt-7a1" id="dpr-RX-Ntj"/>
                         <outlet property="mul" destination="2b0-vr-mQa" id="p3k-IX-NX1"/>
+                        <outlet property="precisionStepper" destination="F5m-qu-Zlo" id="Tvv-7A-7ua"/>
+                        <outlet property="precisionText" destination="3qa-Pt-LJu" id="l92-t0-s45"/>
                         <outlet property="sub" destination="aCc-U9-EKT" id="N43-EG-guI"/>
                     </connections>
                 </viewController>
