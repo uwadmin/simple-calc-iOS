@@ -90,6 +90,34 @@ class ViewController: UIViewController {
         return count == 0
     }
     
+    func reArrangearr(_ arr: Array<String>) -> Array<String> {
+        var arr1 = arr
+        for i in stride(from: 1, to: arr.count - 1 , by: 2) {
+                switch arr1[i] {
+                case "*":
+                    let temp = Double(arr1[i - 1])! * Double(arr1[i + 1])!
+                    arr1[i - 1] = "0"
+                    arr1[i] = "+"
+                    arr1[i + 1] = temp.clean
+                case "/":
+                    let temp = Double(arr1[i - 1])! / Double(arr1[i + 1])!
+                    arr1[i - 1] = "0"
+                    arr1[i] = "+"
+                    arr1[i + 1] = temp.clean
+                case "%":
+                    let temp = Double(arr1[i - 1])!.truncatingRemainder(dividingBy: Double(arr1[i + 1])!)
+                    arr1[i - 1] = "0"
+                    arr1[i] = "+"
+                    arr1[i + 1] = temp.clean
+                case "-":
+                    arr1[i] = "+"
+                    arr1[i + 1] = (0.0 - Double(arr1[i + 1])!).clean
+                default: ()
+                }
+        }
+        return arr1
+    }
+    
     @IBAction func modeControl(_ sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex) {
         case 0:
@@ -155,44 +183,22 @@ class ViewController: UIViewController {
         postCalc = true
         if let rawInput = Result.text {
             let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
-            let arr = input.condensedWhitespace.components(separatedBy: " ")
+            let rawArr = input.condensedWhitespace.components(separatedBy: " ")
+            let arr = reArrangearr(rawArr)
+            var result:Double = 0
             if arr.count == 1 {
-                Result.text = Result.text! + ""
-                postCalc = false
+                result = Double(arr[0])!
+                Result.text = result.rounded(toPlaces: precision).clean
+                postCalc = true
             } else {
                 if (arr.count % 2 == 1 && eleIsNumber(arr) && sameOp(arr)) {
                     let op = arr[1]
-                    var result:Double = 0
                     switch op {
                     case "+":
                         for i in stride(from: 0, to: arr.count , by: 2) {
                             result += Double(arr[i])!
                         }
                         Result.text = (result).rounded(toPlaces: precision).clean
-                    case "-":
-                        result = Double(arr[0])!
-                        for i in stride(from: 2, to: arr.count , by: 2) {
-                            result -= Double(arr[i])!
-                        }
-                        Result.text = (result).rounded(toPlaces: precision).clean
-                    case "*":
-                        result = Double(arr[0])!
-                        for i in stride(from: 2, to: arr.count , by: 2) {
-                            result *= Double(arr[i])!
-                        }
-                        Result.text = (result).rounded(toPlaces: precision).clean
-                    case "/":
-                        result = Double(arr[0])!
-                        for i in stride(from: 2, to: arr.count , by: 2) {
-                            result /= Double(arr[i])!
-                        }
-                        Result.text = (result).rounded(toPlaces: precision).clean
-                    case "%":
-                        result = Double(arr[0])!
-                        for i in stride(from: 2, to: arr.count , by: 2) {
-                            result = result.truncatingRemainder(dividingBy: Double(arr[i])!)
-                        }
-                        Result.text = result.rounded(toPlaces: precision).clean
                     case "count":
                         Result.text = String(Int(arr.count) / 2 + 1)
                     case "avg":
@@ -202,12 +208,6 @@ class ViewController: UIViewController {
                         let sum = numbers.reduce(0, +)
                         let avg = sum / Double(numbers.count)
                         Result.text = avg.rounded(toPlaces: precision).clean
-//                    case "fact":
-//                        if (arr.count == 2) {
-//                            Result.text = fact(arr[0])
-//                        } else {
-//                            Result.text = "too many operands"
-//                        }
                     default:
                         break
                     }
@@ -223,11 +223,12 @@ class ViewController: UIViewController {
             if let rawInput = Result.text {
                 let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
                 let arr = input.condensedWhitespace.components(separatedBy: " ")
+                var result: Double = 0
                 if arr.count == 1 {
-                    Result.text = Result.text! + ""
+                    result = Double(arr[0])!
+                    Result.text = result.rounded(toPlaces: precision).clean
                     postCalc = true
                 } else {
-                    var result: Double = 0
                     postCalc = true
                     switch sender {
                     case add:
