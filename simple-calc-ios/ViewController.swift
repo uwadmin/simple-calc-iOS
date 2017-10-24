@@ -8,9 +8,6 @@
 
 import UIKit
 
-extension String: Error {
-}
-
 extension Double {
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
@@ -48,14 +45,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var add: UIButton!
     @IBOutlet weak var Result: UILabel!
     
-    var postCalc = false
-    var RPNmode = false
-
+    var postCalc: Bool = false
+    var rpnMode: Bool = false
     var precision: Int = 4
-    @IBAction func stepperChange(_ sender: UIStepper) {
-        precision = Int(sender.value)
-        precisionText.text = sender.value.clean
-    }
     
     func fact(_ input: String) -> String {
         if (Int(input) == nil || Int(input)! > 20) {
@@ -90,40 +82,47 @@ class ViewController: UIViewController {
         return count == 0
     }
     
-    func reArrangearr(_ arr: Array<String>) -> Array<String> {
-        var arr1 = arr
-        for i in stride(from: 1, to: arr.count - 1 , by: 2) {
-                switch arr1[i] {
+    func reArrangeArr(_ arr: Array<String>) -> Array<String> {
+        var cur: Array<String> = arr
+        if (eleIsNumber(cur) && cur.count % 2 == 1) {
+            for i in stride(from: 1, to: arr.count - 1 , by: 2) {
+                switch cur[i] {
                 case "*":
-                    let temp = Double(arr1[i - 1])! * Double(arr1[i + 1])!
-                    arr1[i - 1] = "0"
-                    arr1[i] = "+"
-                    arr1[i + 1] = temp.clean
+                    let temp = Double(cur[i - 1])! * Double(cur[i + 1])!
+                    cur[i - 1] = "0"
+                    cur[i] = "+"
+                    cur[i + 1] = temp.clean
                 case "/":
-                    let temp = Double(arr1[i - 1])! / Double(arr1[i + 1])!
-                    arr1[i - 1] = "0"
-                    arr1[i] = "+"
-                    arr1[i + 1] = temp.clean
+                    let temp = Double(cur[i - 1])! / Double(cur[i + 1])!
+                    cur[i - 1] = "0"
+                    cur[i] = "+"
+                    cur[i + 1] = temp.clean
                 case "%":
-                    let temp = Double(arr1[i - 1])!.truncatingRemainder(dividingBy: Double(arr1[i + 1])!)
-                    arr1[i - 1] = "0"
-                    arr1[i] = "+"
-                    arr1[i + 1] = temp.clean
+                    let temp = Double(cur[i - 1])!.truncatingRemainder(dividingBy: Double(cur[i + 1])!)
+                    cur[i - 1] = "0"
+                    cur[i] = "+"
+                    cur[i + 1] = temp.clean
                 case "-":
-                    arr1[i] = "+"
-                    arr1[i + 1] = (0.0 - Double(arr1[i + 1])!).clean
+                    cur[i] = "+"
+                    cur[i + 1] = (0.0 - Double(cur[i + 1])!).clean
                 default: ()
                 }
+            }
         }
-        return arr1
+        return cur
+    }
+    
+    @IBAction func stepperChange(_ sender: UIStepper) {
+        precision = Int(sender.value)
+        precisionText.text = sender.value.clean
     }
     
     @IBAction func modeControl(_ sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex) {
         case 0:
-            RPNmode = false
+            rpnMode = false
         case 1:
-            RPNmode = true
+            rpnMode = true
         default:
             break
         }
@@ -131,7 +130,7 @@ class ViewController: UIViewController {
     
     @IBAction func cmdPressed(_ sender: UIButton) {
         postCalc = true
-        if (RPNmode == true) {
+        if (rpnMode == true) {
             if let rawInput = Result.text {
                 let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !input.contains(" ") {
@@ -184,7 +183,7 @@ class ViewController: UIViewController {
         if let rawInput = Result.text {
             let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
             let rawArr = input.condensedWhitespace.components(separatedBy: " ")
-            let arr = reArrangearr(rawArr)
+            let arr = reArrangeArr(rawArr)
             var result:Double = 0
             if (arr.count == 1 && eleIsNumber(arr)) {
                 result = Double(arr[0])!
@@ -219,7 +218,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorPressed(_ sender: UIButton) {
-        if (RPNmode) {
+        if (rpnMode) {
             if let rawInput = Result.text {
                 let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
                 let arr = input.condensedWhitespace.components(separatedBy: " ")
@@ -260,7 +259,6 @@ class ViewController: UIViewController {
                             result = result.truncatingRemainder(dividingBy: Double(arr[i])!)
                         }
                         Result.text = result.rounded(toPlaces: precision).clean
-
                     default:
                         break
                     }
