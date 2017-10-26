@@ -111,6 +111,9 @@ class ViewController: UIViewController {
         }
         return cur
     }
+    @IBAction func histPressed(_ sender: Any) {
+        postCalc = false;
+    }
     
     @IBAction func stepperChange(_ sender: UIStepper) {
         precision = Int(sender.value)
