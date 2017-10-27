@@ -12,6 +12,7 @@
 		F01265451F99DBBF00F66894 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01265431F99DBBF00F66894 /* Main.storyboard */; settings = {ASSET_TAGS = (0, ); }; };
 		F01265471F99DBBF00F66894 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01265461F99DBBF00F66894 /* Assets.xcassets */; };
 		F012654A1F99DBBF00F66894 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01265481F99DBBF00F66894 /* LaunchScreen.storyboard */; };
+		F0A7B82A1FA2C1420035D1C1 /* HistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F01265461F99DBBF00F66894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F01265491F99DBBF00F66894 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F012654B1F99DBBF00F66894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistViewController.swift; path = "simple-calc-ios/HistViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		F01265331F99DBBE00F66894 = {
 			isa = PBXGroup;
 			children = (
+				F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */,
 				F012653E1F99DBBF00F66894 /* simple-calc-ios */,
 				F012653D1F99DBBF00F66894 /* Products */,
 			);
@@ -141,6 +144,7 @@
 			files = (
 				F01265421F99DBBF00F66894 /* ViewController.swift in Sources */,
 				F01265401F99DBBF00F66894 /* AppDelegate.swift in Sources */,
+				F0A7B82A1FA2C1420035D1C1 /* HistViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
