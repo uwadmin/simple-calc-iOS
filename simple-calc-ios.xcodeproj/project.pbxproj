@@ -23,7 +23,7 @@
 		F01265461F99DBBF00F66894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F01265491F99DBBF00F66894 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F012654B1F99DBBF00F66894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistViewController.swift; path = "simple-calc-ios/HistViewController.swift"; sourceTree = "<group>"; };
+		F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 		F01265331F99DBBE00F66894 = {
 			isa = PBXGroup;
 			children = (
-				F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */,
 				F012653E1F99DBBF00F66894 /* simple-calc-ios */,
 				F012653D1F99DBBF00F66894 /* Products */,
 			);
@@ -57,6 +56,7 @@
 		F012653E1F99DBBF00F66894 /* simple-calc-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F0A7B8291FA2C1420035D1C1 /* HistViewController.swift */,
 				F012653F1F99DBBF00F66894 /* AppDelegate.swift */,
 				F01265411F99DBBF00F66894 /* ViewController.swift */,
 				F01265431F99DBBF00F66894 /* Main.storyboard */,

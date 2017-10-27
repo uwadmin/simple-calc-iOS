@@ -31,7 +31,6 @@ extension String {
 }
 
 
-
 class ViewController: UIViewController {
     @IBOutlet weak var precisionStepper: UIStepper!
     @IBOutlet weak var precisionText: UILabel!
@@ -44,10 +43,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var sub: UIButton!
     @IBOutlet weak var add: UIButton!
     @IBOutlet weak var Result: UILabel!
-    
+
     var postCalc: Bool = false
     var rpnMode: Bool = false
     var precision: Int = 4
+    var hist: [String] = []
     
     func fact(_ input: String) -> String {
         if (Int(input) == nil || Int(input)! > 20) {
@@ -137,27 +137,45 @@ class ViewController: UIViewController {
         if (rpnMode == true) {
             if let rawInput = Result.text {
                 let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
+                var result: String = ""
+                var op: String = ""
                 if !input.contains(" ") {
                     switch sender {
-                    case count: Result.text = "1"
-                    case avg: ()
+                    case count:
+                        result = "1"
+                        op = "count"
+                        Result.text = result
+                    case avg:
+                        op = "avg"
+                        result = input
                     case fact:
-                        Result.text = fact(input)
+                        result = fact(input)
+                        op = "fact"
+                        Result.text = result
                     default: ()
                     }
+                    let equation = "RPN Mode: \(input) \(op) = \(result)"
+                    hist.append(equation)
                 } else {
                     let numbers = input.condensedWhitespace.components(separatedBy: " ").flatMap {
                         Double($0)
                     }
                     switch sender {
-                    case count: Result.text = String(numbers.count)
+                    case count:
+                        op = "count"
+                        result = String(numbers.count)
+                        Result.text = result
                     case avg:
                         let sum = numbers.reduce(0, +)
                         let avg = sum / Double(numbers.count)
-                        Result.text = avg.rounded(toPlaces: precision).clean
+                        op = "avg"
+                        result = avg.rounded(toPlaces: precision).clean
+                        Result.text = result
                     case fact: Result.text = "too many operands"
                     default: ()
                     }
+                    let equation = "RPN Mode: \(input) \(op) = \(result)"
+                    hist.append(equation)
                 }
             }
         } else {
@@ -188,32 +206,41 @@ class ViewController: UIViewController {
             let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
             let rawArr = input.condensedWhitespace.components(separatedBy: " ")
             let arr = reArrangeArr(rawArr)
-            var result:Double = 0
+            var resultNum:Double = 0
+            var result:String = ""
             if (arr.count == 1 && eleIsNumber(arr)) {
-                result = Double(arr[0])!
-                Result.text = result.rounded(toPlaces: precision).clean
+                resultNum = Double(arr[0])!
+                result = resultNum.rounded(toPlaces: precision).clean
+                Result.text = result
                 postCalc = true
+                let equation = "\(input) = \(result)"
+                hist.append(equation)
             } else {
                 if (arr.count % 2 == 1 && eleIsNumber(arr) && sameOp(arr)) {
                     let op = arr[1]
                     switch op {
                     case "+":
                         for i in stride(from: 0, to: arr.count , by: 2) {
-                            result += Double(arr[i])!
+                            resultNum += Double(arr[i])!
                         }
-                        Result.text = (result).rounded(toPlaces: precision).clean
+                        result = (resultNum).rounded(toPlaces: precision).clean
+                        Result.text = result
                     case "count":
-                        Result.text = String(Int(arr.count) / 2 + 1)
+                        result = String(Int(arr.count) / 2 + 1)
+                        Result.text = result
                     case "avg":
                         let numbers = arr.flatMap {
                             Double($0)
                         }
                         let sum = numbers.reduce(0, +)
                         let avg = sum / Double(numbers.count)
-                        Result.text = avg.rounded(toPlaces: precision).clean
+                        result = avg.rounded(toPlaces: precision).clean
+                        Result.text = result
                     default:
                         ()
                     }
+                    let equation = "\(input) = \(result)"
+                    hist.append(equation)
                 } else {
                     Result.text = "error"
                 }
@@ -226,47 +253,61 @@ class ViewController: UIViewController {
             if let rawInput = Result.text {
                 let input = rawInput.trimmingCharacters(in: .whitespacesAndNewlines)
                 let arr = input.condensedWhitespace.components(separatedBy: " ")
-                var result: Double = 0
+                var resultNum: Double = 0
+                var result: String = ""
+                var op: String = ""
                 if arr.count == 1 {
-                    result = Double(arr[0])!
-                    Result.text = result.rounded(toPlaces: precision).clean
+                    resultNum = Double(arr[0])!
+                    result = resultNum.rounded(toPlaces: precision).clean
+                    Result.text = result
                     postCalc = true
                 } else {
                     postCalc = true
                     switch sender {
                     case add:
                         for ele in arr {
-                            result += Double(ele)!
+                            resultNum += Double(ele)!
                         }
-                        Result.text = result.rounded(toPlaces: precision).clean
+                        result = resultNum.rounded(toPlaces: precision).clean
+                        op = "+"
+                        Result.text = result
                     case sub:
-                        result = Double(arr[0])! * 2
+                        resultNum = Double(arr[0])! * 2
                         for ele in arr {
-                            result -= Double(ele)!
+                            resultNum -= Double(ele)!
                         }
-                        Result.text = result.rounded(toPlaces: precision).clean
+                        result = resultNum.rounded(toPlaces: precision).clean
+                        op = "-"
+                        Result.text = result
                     case mul:
-                        result = 1
+                        resultNum = 1
                         for ele in arr {
-                            result *= Double(ele)!
+                            resultNum *= Double(ele)!
                         }
-                        Result.text = result.rounded(toPlaces: precision).clean
+                        result = resultNum.rounded(toPlaces: precision).clean
+                        op = "*"
+                        Result.text = result
                     case div:
-                        result = Double(arr[0])! * Double(arr[0])!
+                        resultNum = Double(arr[0])! * Double(arr[0])!
                         for ele in arr {
-                            result /= Double(ele)!
+                            resultNum /= Double(ele)!
                         }
-                        Result.text = result.rounded(toPlaces: precision).clean
+                        result = resultNum.rounded(toPlaces: precision).clean
+                        op = "/"
+                        Result.text = result
                     case mod:
-                        result = Double(arr[0])!
+                        resultNum = Double(arr[0])!
                         for i in stride(from: 2, to: arr.count , by: 1) {
-                            result = result.truncatingRemainder(dividingBy: Double(arr[i])!)
+                            resultNum = resultNum.truncatingRemainder(dividingBy: Double(arr[i])!)
                         }
-                        Result.text = result.rounded(toPlaces: precision).clean
+                        result = resultNum.rounded(toPlaces: precision).clean
+                        op = "%"
+                        Result.text = result
                     default:
                         break
                     }
-
+                    let equation = "RPN Mode: \(input) \(op) = \(result)"
+                    hist.append(equation)
                 }
             } else {
                 Result.text = "error"
@@ -311,6 +352,12 @@ class ViewController: UIViewController {
         default:
             ()
         }
+        print(hist)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let histView = segue.destination as! HistViewController
+        histView.hist = self.hist
     }
     
     override func viewDidLoad() {

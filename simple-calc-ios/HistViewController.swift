@@ -9,16 +9,39 @@
 import UIKit
 
 class HistViewController: UIViewController {
-    @IBOutlet weak var ScrollView: UIScrollView!
-    
-    let hist = UILabel()
-    
-    
-    
+    var hist : [String] = []
+
+//    func makeHistory() {
+//        hist.numberOfLines = 0
+//        histLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        histLabel.sizeToFit()
+//        histLabel.backgroundColor = UIColor.orange
+//        histLabel.textColor = UIColor.white
+//        histLabel.numberOfLines = 0
+//    }
+//
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let scrollView = UIScrollView(frame: view.bounds)
+        scrollView.backgroundColor = UIColor.white
+        scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        scrollView.contentSize = CGSize(width: 375, height: 1500)
+        view.addSubview(scrollView)
+        var index = 0
+        for ele in hist {
+            let label = UILabel(frame: CGRect(x: 0, y: index * 20, width: 300, height: 40))
+            label.numberOfLines = 0
+            label.lineBreakMode = NSLineBreakMode.byTruncatingHead
+            label.text = ele
+            label.font = label.font.withSize(20)
+            scrollView.addSubview(label)
+            index += 1
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let mainView = segue.destination as! ViewController
+        mainView.hist = self.hist
     }
 
     override func didReceiveMemoryWarning() {
