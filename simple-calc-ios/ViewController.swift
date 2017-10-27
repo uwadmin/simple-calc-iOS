@@ -111,6 +111,7 @@ class ViewController: UIViewController {
         }
         return cur
     }
+    
     @IBAction func histPressed(_ sender: Any) {
         postCalc = false;
     }
