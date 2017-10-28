@@ -280,13 +280,13 @@
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precision: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7Z-6Y-ZaS">
-                                <rect key="frame" x="16" y="111.5" width="102" height="27.5"/>
+                                <rect key="frame" x="16" y="112" width="102" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qa-Pt-LJu">
-                                <rect key="frame" x="118" y="111.5" width="14.5" height="27.5"/>
+                                <rect key="frame" x="118" y="112" width="14.5" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -322,7 +322,6 @@
                                     <color key="titleColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
-                                    <action selector="histPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AF4-wN-bGC"/>
                                     <segue destination="cqJ-Z2-dW5" kind="show" id="uHy-qZ-dQn"/>
                                 </connections>
                             </button>
