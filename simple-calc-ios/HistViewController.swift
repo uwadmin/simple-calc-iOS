@@ -9,7 +9,7 @@
 import UIKit
 
 class UILabelPadding: UILabel {
-    let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+    let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     override func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, padding))
     }
@@ -23,17 +23,7 @@ class UILabelPadding: UILabel {
 
 class HistViewController: UIViewController {
     var hist : [String] = []
-    
-    //    func makeHistory() {
-    //        hist.numberOfLines = 0
-    //        histLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-    //        histLabel.sizeToFit()
-    //        histLabel.backgroundColor = UIColor.orange
-    //        histLabel.textColor = UIColor.white
-    //        histLabel.numberOfLines = 0
-    //    }
-    //
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         let scrollView = UIScrollView(), contentView = UIView()
         
@@ -112,7 +102,7 @@ class HistViewController: UIViewController {
             view.textColor = self.view.tintColor
             view.font = view.font.withSize(30)
             view.numberOfLines = 0
-            view.lineBreakMode = .byWordWrapping
+            view.lineBreakMode = .byCharWrapping
             view.backgroundColor = .white
             view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(view)
@@ -155,8 +145,7 @@ class HistViewController: UIViewController {
             
             previousViewElement = view
         }
-        
-        // At this point previousViewElement refers to the last subview, that is the one at the bottom.
+    
         if (hist.count > 0) {
             contentView.addConstraint(
                 NSLayoutConstraint(item: previousViewElement,
@@ -165,7 +154,7 @@ class HistViewController: UIViewController {
                                    toItem: contentView,
                                    attribute: .bottom,
                                    multiplier: 1.0,
-                                   constant: -20.0))
+                                   constant: 0.0))
         }
 
     }
@@ -180,16 +169,4 @@ class HistViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
